@@ -1,0 +1,54 @@
+.jumbotron {
+    background-image: url(../images/header.png);
+    background-position: 100% 50%;
+    background-size: cover;
+    color: #ffffff;
+
+    .form-inline {
+        position: relative;
+        top: 30px;
+        margin: 15px 5px !important;
+    }
+}
+
+.places h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: #ffc628;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4); 
+    animation: fadeIn 2s ease; 
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.mobile-apps {
+    background: linear-gradient(45deg, #fbff0d, #5CB85C);
+    padding: 50px;
+    margin-top: 100px;
+
+    h1 {
+        color: #ffffff;
+        margin-bottom: 50px;
+    }
+}
+
+.articles-list {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 20px;
+}
