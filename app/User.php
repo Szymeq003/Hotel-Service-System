@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
@@ -8,7 +9,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use Enjoythetrip\Presenters\UserPresenter;
-
+    
     public static $roles = [];
 
     /**
@@ -28,7 +29,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+
     public function objects()
     {
         return $this->morphedByMany('App\TouristObject', 'likeable');
@@ -38,7 +39,7 @@ class User extends Authenticatable
     {
         return $this->morphedByMany('App\Article', 'likeable');
     }
-    
+
     public function photos()
     {
         return $this->morphMany('App\Photo', 'photoable');
@@ -53,21 +54,35 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Role');
     }
+    
+    public function reservations()
+    {
+        return $this->hasMany(['App\Reservation']);
+    }
 
     public function hasRole(array $roles)
     {
+
         foreach($roles as $role)
         {
+            
             if(isset(self::$roles[$role])) 
             {
                 if(self::$roles[$role])  return true;
+
             }
             else
             {
                 self::$roles[$role] = $this->roles()->where('name', $role)->exists();
                 if(self::$roles[$role]) return true;
             }
+            
         }
+        
+
         return false;
+ 
     }
+    
 }
+

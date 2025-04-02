@@ -1,56 +1,81 @@
-var eventDates = {};
-var datesConfirmed = ['02/12/2019', '02/15/2019', '02/23/2019'];
-var datesnotConfirmed = ['02/13/2019', '02/14/2019', '02/20/2019', '02/21/2019'];
+function datesBetween(startDt, endDt) {
+    var between = [];
+    var currentDate = new Date(startDt);
+    var end = new Date(endDt);
+    while (currentDate <= end) {
+        between.push( $.datepicker.formatDate('mm/dd/yy',new Date(currentDate)) );
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
 
-
-
-for (var i = 0; i < datesConfirmed.length; i++)
-{
-    eventDates[ datesConfirmed[i] ] = 'confirmed';
+    return between;
 }
 
-var tmp = {};
-for (var i = 0; i < datesnotConfirmed.length; i++)
-{
-    tmp[ datesnotConfirmed[i] ] = 'notconfirmed';
-}
+var Ajax = {
+
+    get: function (url, success, data = null, beforeSend = null) {
+
+        $.ajax({
+
+            cache: false,
+            url: base_url + '/' + url,
+            type: "GET",
+            data: data,
+            success: function(response){
+                
+            App[success](response);
+                
+            },
+            beforeSend: function(){
+               
+            if(beforeSend)    
+            App[beforeSend]();
+                
+            }
+
+        });
+    }
+
+};
+
+var App = {
 
 
-Object.assign(eventDates, tmp);
+    GetReservationData: function (id, calendar_id, date) {
+
+        App.calendar_id = calendar_id;
+        Ajax.get('ajaxGetReservationData?fromWebApp=1', 'AfterGetReservationData',{room_id: id, date: date},'BeforeGetReservationData');
+        
+
+    },
+    BeforeGetReservationData: function() {
+        
+       
+    $('.loader_' + App.calendar_id).hide();
+    $('.hidden_' + App.calendar_id).show();
+        
+  
+    },
+    AfterGetReservationData: function(response) {
+        
+        
+        $('.hidden_' + App.calendar_id + " .reservation_data_room_number").html(response.room_number);
+        
+        $('.hidden_' + App.calendar_id + " .reservation_data_day_in").html(response.day_in);
+        $('.hidden_' + App.calendar_id + " .reservation_data_day_out").html(response.day_out);
+        $('.hidden_' + App.calendar_id + " .reservation_data_person").html(response.FullName);
+        $('.hidden_' + App.calendar_id + " .reservation_data_person").attr('href', response.userLink);
+        $('.hidden_' + App.calendar_id + " .reservation_data_delete_reservation").attr('href', response.deleteResLink);
 
 
-$(function () {
-    $(".reservation_calendar").datepicker({
-        onSelect: function (data) {
-
-            var a = $(this).attr('id');
-
-            $('.hidden_' + a).hide();
-            $('.loader_' + a).show();
-
-            setTimeout(function () {
-
-                $('.loader_' + a).hide();
-                $('.hidden_' + a).show();
-
-            }, 1000);
-
-        },
-        beforeShowDay: function (date)
+        if (response.status)
         {
-            var tmp = eventDates[ $.datepicker.formatDate('mm/dd/yy', date)];
-//            console.log(tmp);
-            if (tmp)
-            {
-                if (tmp == 'confirmed')
-                    return [true, 'reservationconfirmed'];
-                else
-                    return [true, 'reservationnotconfirmed'];
-            } else
-                return [false, ''];
+            $('.hidden_' + App.calendar_id + " .reservation_data_confirm_reservation").removeAttr('href');
+            $('.hidden_' + App.calendar_id + " .reservation_data_confirm_reservation").attr('disabled', 'disabled');
 
+        } else
+        {
+            $('.hidden_' + App.calendar_id + " .reservation_data_confirm_reservation").attr('href', response.confirmResLink);
         }
 
-
-    });
-});
+    }
+};

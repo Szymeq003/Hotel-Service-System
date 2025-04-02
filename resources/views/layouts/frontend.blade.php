@@ -33,9 +33,6 @@
                 <span class="sr-only">Toggle navigation</span>
             </button>
             <a class="navbar-brand home-button home-link" href="{{ route('home') }}">Strona główna</a>
-            <a class="navbar-brand home-button position-link1" href="">Pozycja 1</a>
-            <a class="navbar-brand home-button position-link2" href="">Pozycja 2</a>
-            <a class="navbar-brand home-button position-link3" href="">Pozycja 3</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             @auth

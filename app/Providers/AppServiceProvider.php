@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -29,10 +30,12 @@ class AppServiceProvider extends ServiceProvider
         {            
             return new \App\Enjoythetrip\Repositories\FrontendRepository;
         });
-
+        
+        
         $this->app->bind(\App\Enjoythetrip\Interfaces\BackendRepositoryInterface::class,function()
         {            
             return new \App\Enjoythetrip\Repositories\BackendRepository;
         });
     }
 }
+

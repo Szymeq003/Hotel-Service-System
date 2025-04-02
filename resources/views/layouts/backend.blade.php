@@ -1,8 +1,3 @@
-<!--
-|--------------------------------------------------------------------------
-| resources/views/layouts/backend.blade.php *** Copyright netprogs.pl | available only at Udemy.com | further distribution is prohibited  ***
-|--------------------------------------------------------------------------
--->
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -23,15 +18,16 @@
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">  <!-- Lecture 5  -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+
         <script>
-        var base_url = '{{ url('/') }}';
+        var base_url = '{{ url('/admin') }}'; <?php ?>
         </script>
         
     </head>
@@ -93,19 +89,21 @@
 
                     </div>-->
 
-                    @yield('content') <!-- Lecture 5 -->
+                    @yield('content')
                 </div>
             </div>
         </div>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <script src="{{ asset('js/app.js') }}"></script> <!-- Lecture 5 -->
-        <script src="{{ asset('js/admin.js') }}"></script> <!-- Lecture 5 -->
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/admin.js') }}"></script> 
+        @stack('scripts')
     </body>
 </html>
 
