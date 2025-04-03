@@ -112,10 +112,10 @@
                                     <td><a class="reservation_data_person" target="_blank" href=""></a></td> 
 
                                     @if( Auth::user()->hasRole(['admin','owner']) )
-                                    <td><a href="#" class="btn btn-primary btn-xs reservation_data_confirm_reservation">Confirm</a></td> 
+                                    <td><a href="#" class="btn btn-primary btn-xs reservation_data_confirm_reservation keep_pos <?php ?>">Confirm</a></td>
                                     @endif
                                     
-                                    <td><a class="reservation_data_delete_reservation" href=""><span class="glyphicon glyphicon-remove"></span></a></td> 
+                                    <td><a class="reservation_data_delete_reservation keep_pos <?php ?>" href=""><span class="glyphicon glyphicon-remove"></span></a></td> 
                                 </tr>
                             </tbody>
                         </table>

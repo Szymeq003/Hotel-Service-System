@@ -2,6 +2,11 @@ $(function () {
     $(".datepicker").datepicker();
 });
 
+$(function() {
+    $.datepicker.setDefaults($.datepicker.regional['pl']);
+    $("#datepicker").datepicker();
+});
+
 
 $(function () {
     $(".autocomplete").autocomplete({

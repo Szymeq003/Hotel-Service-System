@@ -1,3 +1,5 @@
+@import "_navbar.scss";
+
 body {
     padding-top: 50px;
 }
@@ -1022,58 +1024,9 @@ button:hover {
     color: #5cb85c; 
 }
 
-.admin-link {
-    background: linear-gradient(45deg, #007bff, #00d2ff); 
-    color: #ffffff !important;
-    border-radius: 20px;
-    padding: 8px 15px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s ease, transform 0.3s ease; 
-}
 
-.admin-link:hover {
-    background: linear-gradient(45deg, #0056b3, #009ecf); 
-    transform: translateY(-3px); 
-}
 
-.logout-button {
-    background: linear-gradient(45deg, #d9534f, #ff6f61); 
-    color: #ffffff !important;
-    border-radius: 20px;
-    padding: 8px 15px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s ease, transform 0.3s ease; 
-}
 
-.logout-button:hover {
-    background: linear-gradient(45deg, #c9302c, #e35d55); 
-    transform: translateY(-3px); 
-}
-
-.navbar {
-    background: linear-gradient(90deg, #eaeaea, #f5f5f5); 
-    border-bottom: 2px solid #dcdcdc; 
-    font-family: 'Open Sans', sans-serif;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-brand {
-    color: #333333; 
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 10px 20px; 
-    border-radius: 8px; 
-    transition: background 0.3s ease, transform 0.2s ease, margin-left 0.3s ease;
-}
-
-.navbar-brand:hover {
-    background: linear-gradient(90deg, #dcdcdc, #e0e0e0); 
-    transform: translateY(-3px); 
-}
 
 .home-link {
     margin-right: 20px;  
@@ -1091,26 +1044,6 @@ button:hover {
     margin-right: 20px;
 }
 
-@media (max-width: 768px) {
-    .navbar-header {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar-brand {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
-    }
-}
-
-.container1 {
-    background: linear-gradient(135deg, #eaeaea, #e0e0e0); 
-    padding: 10px; 
-    border-radius: 10px; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
-}
 
 .jumbotron {
     background-image: url(../images/header.png);
@@ -1258,6 +1191,78 @@ select.form-control {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+.reservation-container {
+    text-align: center;
+    margin: 20px auto;
+    border-radius: 15px;
+}
+
+.reservation-btn-login {
+    display: inline-block;
+    background-color: #ff5733;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reservation-btn-login a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.reservation-btn-login:hover {
+    background-color: #e94e2e;
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reservation-btn-login:active {
+    background-color: #d44228;
+    transform: translateY(1px);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-btn-submit {
+    display: inline-block;
+    background-color: #ff5733;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reservation-btn-submit:hover {
+    background-color: #e94e2e;
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reservation-btn-submit:active {
+    background-color: #d44228;
+    transform: translateY(1px);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-error {
+    font-size: 14px;
+    color: #dc3545;
+    margin-top: 10px;
+}
+
+
 
 /*room.php*/
 #reservation div.ui-datepicker {

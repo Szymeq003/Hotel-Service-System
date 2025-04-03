@@ -28,18 +28,21 @@
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container1">
-    <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <div class="navbar-header">
+            <button type="button-home" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand home-button home-link" href="{{ route('home') }}">Strona główna</a>
+            <a class="navbar-brand home-link" href="{{ route('home') }}">Strona główna</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             @auth
             <ul class="nav navbar-nav">
-                <li><p class="navbar-text">Zalogowano jako:</p></li>
+                <li><p class="navbar-text">Witaj!</p></li>
                 <li><p class="navbar-text user-name">{{ Auth::user()->name }}</p></li>
-                <li><a href="{{ route('adminHome') }}" class="admin-link">Panel Admina</a></li>
+                <li><a href="{{ route('adminHome') }}" class="admin-link">Panel Rezerwacji</a></li>
                 <li>
                     <a class="logout-button" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -60,6 +63,7 @@
         </div>
     </div>
 </nav>
+
 
 
         <div class="jumbotron">
@@ -132,6 +136,7 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/datepicker-pl.js') }}"></script>
         @stack('scripts')
     </body>
 </html>

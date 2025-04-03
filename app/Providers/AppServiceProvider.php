@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,19 @@ class AppServiceProvider extends ServiceProvider
         View::composer('frontend.*', function ($view) {
             $view->with('placeholder', asset('images/placeholder.png'));
             });
+
+        if (App::environment('local'))
+        { 
+           View::composer('*', function ($view) {
+            $view->with('novalidate', 'novalidate');
+            });
+        }
+        else
+        {
+            View::composer('*', function ($view) {
+            $view->with('novalidate', null);
+            });
+        }
     }
 
     /**
@@ -24,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    
     public function register()
     {
         $this->app->bind(\App\Enjoythetrip\Interfaces\FrontendRepositoryInterface::class,function()

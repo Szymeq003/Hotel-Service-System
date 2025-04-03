@@ -1,1 +1,1 @@
-$(function(){$(".datepicker").datepicker()}),$(function(){$(".autocomplete").autocomplete({source:base_url+"/searchCities",minLength:2,select:function(e,t){}})});
+$(function(){$(".datepicker").datepicker()}),$(function(){$.datepicker.setDefaults($.datepicker.regional.pl),$("#datepicker").datepicker()}),$(function(){$(".autocomplete").autocomplete({source:base_url+"/searchCities",minLength:2,select:function(e,t){}})});

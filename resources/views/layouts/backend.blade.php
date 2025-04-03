@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Admin panel</title>
+        <title>Panel Rezerwacji</title>
 
         <!-- Bootstrap core CSS -->
         <link href="https://bootswatch.com/3/readable/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +28,15 @@
 
         <script>
         var base_url = '{{ url('/admin') }}'; <?php ?>
+
+        <?php
+        if (isset($_COOKIE['scroll_val'])) {
+
+            echo 'var scroll_val=' . '"' . (int) $_COOKIE['scroll_val'] . '";';
+
+            setcookie('scroll_val', '', -3000);
+        }
+        ?>
         </script>
         
     </head>
@@ -58,9 +67,19 @@
                                 <li><a href="#">Your reservation for room number 10 in the X object on 08/28/2017 has been canceled</a></li>
                             </ul>
                         </li>
-                        <li><p class="navbar-text">John Doe</p></li>
+                    <li><p class="navbar-text">{{ Auth::user()->FullName }}</p></li>
                         <li><a href="{{ route('profile') }}">Profile</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -78,17 +97,17 @@
                 </div>
 
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <br>
 
-
-
-                    <!--<br>
-                    <div class="alert alert-dismissible show" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>-->
-
+@if(Session::has('message'))
+<br>
+<div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissible show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ Session::get('message') }}
+</div>
+@endif
                     @yield('content')
                 </div>
             </div>
@@ -102,8 +121,32 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('js/admin.js') }}"></script> 
+        <script src="{{ asset('js/admin.js') }}"></script>
+        <script src="{{ asset('js/datepicker-pl.js') }}"></script> 
         @stack('scripts')
+
+        <script>
+
+        $(function () {
+
+        if (typeof scroll_val !== 'undefined') {
+
+            $(window).scrollTop(scroll_val);
+        }
+
+        });
+
+        function scroll_value()
+        {
+            document.cookie = 'scroll_val' + '=' + $(window).scrollTop();
+        }
+
+
+        $(document).on('click', '.keep_pos', function (e) {
+            scroll_value();
+        });
+
+        </script>
     </body>
 </html>
 

@@ -50,11 +50,23 @@ class BackendController extends Controller
 
     public function confirmReservation($id)
     {
-        return 'to do';
+        $reservation = $this->bR->getReservation($id); 
+        $this->authorize('reservation', $reservation); 
+        $this->bR->confirmReservation($reservation);
+        $this->flashMsg ('success', __('Rezerwacja została potwierdzona'));
+
+        if (!\Request::ajax())
+        return redirect()->back();
     }
 
     public function deleteReservation($id)
     {
-        return 'to do';
+        $reservation = $this->bR->getReservation($id);
+        $this->authorize('reservation', $reservation); 
+        $this->bR->deleteReservation($reservation);
+        $this->flashMsg ('success', __('Rezerwacja została usunięta'));
+
+        if (!\Request::ajax())
+        return redirect()->back();
     }
 }

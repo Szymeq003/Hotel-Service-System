@@ -26,6 +26,11 @@ class TouristObject extends Model
     {
         return $this->morphMany('App\Photo', 'photoable');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
     
     public function users()
     {

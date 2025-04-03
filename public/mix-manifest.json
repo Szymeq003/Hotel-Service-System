@@ -1,5 +1,6 @@
 {
     "/css/app.css": "/css/app.css",
     "/js/app.js": "/js/app.js",
-    "/js/admin.js": "/js/admin.js"
+    "/js/admin.js": "/js/admin.js",
+    "/js/datepicker-pl.js": "/js/datepicker-pl.js"
 }

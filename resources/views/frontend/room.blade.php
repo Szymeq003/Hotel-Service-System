@@ -45,7 +45,7 @@
 
         <div class="row">
             <div class="col-md-6">
-            <form action="{{ route('makeReservation',['room_id'=>$room->id,'city_id'=>$room->object->city->id]) }}" method="POST">
+            <form {{ $novalidate }} action="{{ route('makeReservation',['room_id'=>$room->id,'city_id'=>$room->object->city->id]) }}" method="POST">
                     <div class="form-group">
                         <label for="checkin">Zameldowanie</label>
                         <input required name="checkin" type="text" class="form-control datepicker" id="checkin" placeholder="">
@@ -54,9 +54,18 @@
                         <label for="checkout">Wymeldowanie</label>
                         <input required name="checkout" type="text" class="form-control datepicker" id="checkout" placeholder="">
                     </div>
-                    <button type="submit" class="btn btn-primary">Zarezerwuj</button> 
-                    <p class="text-danger">{{ Session::get('reservationMsg') }}</p>
-                    {{ csrf_field() }}
+                    <div class="reservation-container">
+    @if(Auth::guest())
+        <button class="reservation-btn-login">
+            <a href="{{ route('login') }}" class="reservation-login-link">Zaloguj się, aby dokonać rezerwacji</a>
+        </button>
+    @else
+        <button type="submit" class="reservation-btn-submit">Zarezerwuj</button>
+    @endif
+    <p class="reservation-error">{{ Session::get('reservationMsg') }}</p>
+    {{ csrf_field() }}
+</div>
+
                 </form>
             </div><br>
             <div class="col-md-6">

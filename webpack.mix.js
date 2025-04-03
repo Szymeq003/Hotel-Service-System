@@ -13,4 +13,5 @@ const mix = require('laravel-mix');
 
  mix.babel('resources/js/app.js', 'public/js/app.js')
     .babel('resources/js/admin.js', 'public/js/admin.js')
+    .babel('resources/js/datepicker-pl.js', 'public/js/datepicker-pl.js')
     .sass('resources/sass/app.scss', 'public/css');
